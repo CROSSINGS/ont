@@ -1,0 +1,37 @@
+@prefix : <http://semanticweb.org/ont/martialcomm#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix mil: <http://rdf.muninn-project.org/ontologies/military#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix mm: <http://semanticweb.org/ont/martialmotion#> .
+
+<http://semanticweb.org/ont/martialcomm> rdf:type owl:Ontology ;
+                                            dct:title "Martial Communication" ;
+                                            dct:description "Ontology module that covers the aspects related to communicating the notion of martial arts to others, especially related to pedagogical aspects of teaching, learning and evaluating, but also in dissemination and competition."@en .
+
+:taughtAt a owl:ObjectProperty
+    ; rdfs:label "taught at"@en
+    ; rdfs:domain mm:StylingSystem
+    ; rdfs:range :MartialArtsCommunity
+.
+
+:MartialArtsCommunity a owl:Class
+    ; rdfs:label "martial arts community"@en
+    ; dct:description "A collective social gathering of martial arts practitioners. It can be officially sanctioned like a school or federation, or otherwise like a clan or sect."@en
+    ; rdfs:subClassOf dul:CollectiveAgent
+.
+
+###  http://semanticweb.org/ont/martialmotion#GradingSystem
+:GradingSystem rdf:type owl:Class ;
+               rdfs:subClassOf dul:Norm ;
+               rdfs:label "grading system" .
+
+###  http://semanticweb.org/ont/martialmotion#isGradedUsing
+:isGradedUsing rdf:type owl:ObjectProperty ;
+               rdfs:domain :GradingSystem ;
+               rdfs:comment "Applies to a styling system, or to a spatio-temporally indexed situation for it (e.g. the way belt colors/strips were being assigned to kyus in karate by a certain federation during a certain period)"@en ;
+               rdfs:label "is graded using"@en .

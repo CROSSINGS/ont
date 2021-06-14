@@ -1,0 +1,305 @@
+@prefix : <http://semanticweb.org/ont/martialmotion#> .
+@prefix dct: <http://purl.org/dc/terms/> .
+@prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
+@prefix mil: <http://rdf.muninn-project.org/ontologies/military#> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://semanticweb.org/ont/martialmotion> .
+
+<http://semanticweb.org/ont/martialmotion> rdf:type owl:Ontology ;
+                                            dct:title "MartialMotion" ;
+                                            rdfs:comment "TODO: model the anatomy of weapon parts (e.g. ends of a staff)"@en ,
+                                                         "This ontology is currently set to encompass both kinetic and cultural traits of martial disciplines, however it may be modularised in future iterations, possibly covering distinct arts/cultures."@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://semanticweb.org/ont/martialmotion#belongsInSystem
+:belongsInSystem rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Technique ;
+                 rdfs:range :StylingSystem ;
+                 rdfs:label "belongs in system" .
+
+
+###  http://semanticweb.org/ont/martialmotion#employsArmament
+:employsArmament rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Technique ;
+                 rdfs:range :Armament ;
+                 rdfs:label "employs armament" .
+
+
+###  http://semanticweb.org/ont/martialmotion#handles
+:handles rdf:type owl:ObjectProperty ;
+         rdfs:domain :Handling ;
+         rdfs:range :WeaponType .
+
+
+###  http://semanticweb.org/ont/martialmotion#inState
+:inState rdf:type owl:ObjectProperty ;
+         rdfs:domain :BodyPartType ;
+         rdfs:range :BodilyState .
+
+
+###  http://semanticweb.org/ont/martialmotion#isFeatureOf
+:isFeatureOf rdf:type owl:ObjectProperty ;
+             rdfs:range [ rdf:type owl:Class ;
+                          owl:unionOf ( :StylingSystem
+                                        :Technique
+                                      )
+                        ] .
+
+
+
+
+
+###  http://semanticweb.org/ont/martialmotion#symbolicallyRepresents
+:symbolicallyRepresents rdf:type owl:ObjectProperty ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( :Choreography
+                                                    :StylingSystem
+                                                    :Technique
+                                                  )
+                                    ] ;
+                        dct:description "the symbolic binding between a form, technique etc. and a wordly entity, e.g. the relationship between a kata and the combat it simulates, or a crane style with a crane's movements."@en ;
+                        rdfs:comment "TODO map to CIDOC CRM symbolic representations or with DOLCE"@en ;
+                        rdfs:label "symbolically represents"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#withGrip
+:withGrip rdf:type owl:ObjectProperty ;
+          rdfs:domain :Handling ;
+          rdfs:range :Grip .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#isPartOf
+dul:isPartOf rdf:type owl:ObjectProperty .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://rdf.muninn-project.org/ontologies/military#Weapon
+mil:Weapon rdf:type owl:Class ;
+           owl:equivalentClass :WeaponType .
+
+
+###  http://semanticweb.org/ont/martialmotion#AmbiTechnique
+:AmbiTechnique rdf:type owl:Class ;
+               rdfs:subClassOf :FrontalTechnique ,
+                               :ReverseTechnique ;
+               dct:description "A technique that has both at least one frontal element and at least one reverse element."@en ;
+               rdfs:comment "e.g. holding a staff in the middle and using both ends to attack."@en ;
+               rdfs:label "ambivalent technique"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#Armament
+:Armament rdf:type owl:Class ;
+          rdfs:comment "A type of device with the potential to cause or impede harm. Types of body parts, or of stances assumed by them, may be classified as such."@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#BodilyHardness
+:BodilyHardness rdf:type owl:Class ;
+                rdfs:subClassOf dul:Quality ,
+                                [ rdf:type owl:Restriction ;
+                                  owl:onProperty dul:isPartOf ;
+                                  owl:someValuesFrom :BodilyState
+                                ] ;
+                dct:description "A qualitative measure of how a body, or part thereof, is able to resist blows - and, under certain conditions, deliver them."@en ;
+                rdfs:label "bodily hardness"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#BodilyState
+:BodilyState rdf:type owl:Class .
+
+
+###  http://semanticweb.org/ont/martialmotion#BodyPartType
+:BodyPartType rdf:type owl:Class ;
+              rdfs:subClassOf :Armament ;
+              owl:disjointWith :WeaponType ;
+              rdfs:label "body part type" .
+
+
+###  http://semanticweb.org/ont/martialmotion#Choreography
+:Choreography rdf:type owl:Class ;
+              rdfs:subClassOf dul:Method ;
+              rdfs:comment "Forms. Examples include Japanese kata, Chinese taolu, Korean hyung, and Southeast Asian jurus (preset) and tari (freeform)"@en ,
+                           "TODO: make a separate class for Form?"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#DynamicTrainingMethod
+:DynamicTrainingMethod rdf:type owl:Class ;
+                       rdfs:subClassOf :TrainingMethod ;
+                       owl:disjointWith :StaticTrainingMethod ;
+                       rdfs:label "dynamic training method" .
+
+
+###  http://semanticweb.org/ont/martialmotion#EmptyHandTechnique
+:EmptyHandTechnique rdf:type owl:Class ;
+                    rdfs:subClassOf :Technique ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :employsArmament ;
+                                      owl:allValuesFrom :BodyPartType
+                                    ] ;
+                    owl:disjointWith :WeaponTechnique .
+
+
+###  http://semanticweb.org/ont/martialmotion#FrontalTechnique
+:FrontalTechnique rdf:type owl:Class ;
+                  rdfs:subClassOf :Technique ;
+                  rdfs:label "frontal technique" .
+
+
+
+
+
+###  http://semanticweb.org/ont/martialmotion#Grip
+:Grip rdf:type owl:Class ;
+      rdfs:subClassOf :BodilyState ;
+      dct:description "a way of keeping a hold on something, e.g. a loose grip on the part of a weapon where you move / side hands."@en ;
+      rdfs:label "grip"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#Handling
+:Handling rdf:type owl:Class ;
+          rdfs:subClassOf :BodilyState ;
+          dct:description "the state of a body part as it is handling a physical object. Example: the hand that has a tight grip on the part of a pole where impact is expected."@en ;
+          rdfs:label "handling"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#HardApproach
+:HardApproach rdf:type owl:Class ;
+              rdfs:subClassOf :IntentiveApproach ;
+              dct:description "An intent that requires hardening of the body prior to the execution of a technique."@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#IntentiveApproach
+:IntentiveApproach rdf:type owl:Class ;
+                   dct:description "an approach with an intent (e.g. to attack, distract or defend)"@en ;
+                   rdfs:label "intentive approach"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#MeleeWeaponType
+:MeleeWeaponType rdf:type owl:Class ;
+                 rdfs:subClassOf :WeaponType ;
+                 rdfs:label "melee weapon type" .
+
+
+###  http://semanticweb.org/ont/martialmotion#Posture
+:Posture rdf:type owl:Class ;
+         rdfs:subClassOf :BodilyState ;
+         dct:description "Not a technique in itself, but a possible requirement of a technique, e.g. Chin Cheung (War Palm) uses a low, wide posture."@en ;
+         rdfs:comment "TODO model the relation between posture and technique."@en ;
+         rdfs:label "posture"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#ReverseTechnique
+:ReverseTechnique rdf:type owl:Class ;
+                  rdfs:subClassOf :Technique ;
+                  rdfs:label "reverse technique" .
+
+
+###  http://semanticweb.org/ont/martialmotion#SoftApproach
+:SoftApproach rdf:type owl:Class ;
+              rdfs:subClassOf :IntentiveApproach ;
+              dct:description "An intent that requires loosening of the body prior to the execution of a technique."@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#StaticTrainingMethod
+:StaticTrainingMethod rdf:type owl:Class ;
+                      rdfs:subClassOf :TrainingMethod ;
+                      rdfs:label "static training method" .
+
+
+###  http://semanticweb.org/ont/martialmotion#Step
+:Step rdf:type owl:Class ;
+      rdfs:subClassOf :BodilyState .
+
+
+###  http://semanticweb.org/ont/martialmotion#StylingSystem
+:StylingSystem rdf:type owl:Class ;
+               rdfs:subClassOf dul:Method ;
+               dct:description "Combination of techniques under a common aegis (e.g. Wado-ryu karate, Hakka staff-fighting system)."@en ;
+               rdfs:label "styling system"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#Technique
+:Technique rdf:type owl:Class ;
+           rdfs:subClassOf dul:Method ;
+           dct:description "What can atomically be considered a technique (e.g. stance, hand form) or combination thereof."@en ;
+           rdfs:label "martial technique"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#TrainingMethod
+:TrainingMethod rdf:type owl:Class ;
+                rdfs:subClassOf dul:Method ;
+                dct:description "a way of matering a styling system, or a technique therein"@en ;
+                rdfs:label "training method" .
+
+
+###  http://semanticweb.org/ont/martialmotion#TrainingSet
+:TrainingSet rdf:type owl:Class ;
+             dct:description "A training method (in a technique or for a whole style) may be comprised of separate training sets, e.g. one solo and one for sparring in two or more."@en ;
+             rdfs:label "training set" .
+
+
+###  http://semanticweb.org/ont/martialmotion#VitalFlow
+:VitalFlow rdf:type owl:Class ;
+           rdfs:subClassOf dul:Quality ;
+           dct:description "A general quality that indicates a physical, mental or spiritual input by the practitioner: for example, the ki/qi (energy) or yi (intent)."@en ;
+           rdfs:label "vital flow"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#WeaponTechnique
+:WeaponTechnique rdf:type owl:Class ;
+                 rdfs:subClassOf :Technique ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :employsArmament ;
+                                   owl:someValuesFrom :WeaponType
+                                 ] .
+
+
+###  http://semanticweb.org/ont/martialmotion#WeaponType
+:WeaponType rdf:type owl:Class ;
+            rdfs:subClassOf :Armament ;
+            dct:description "Denotes an object that one wields with offensive intent."@en ;
+            rdfs:label "weapon type" .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Method
+dul:Method rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Norm
+dul:Norm rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Quality
+dul:Quality rdf:type owl:Class .
+
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Choreography
+                :StylingSystem
+                :Technique
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
