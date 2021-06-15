@@ -1,8 +1,16 @@
+@prefix : <http://crossings.github.io/term/> .
+@prefix dct: <http://purl.org/dc/terms/> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix xml: <http://www.w3.org/XML/1998/namespace> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 
-<http://crossings.github.io/ont/martialarts> rdf:type owl:Ontology
-    ; owl:imports <http://crossings.github.io/ont/martialmotion.owl.ttl>
-    , <http://crossings.github.io/ont/martialtech.owl.ttl> , 
-    <http://crossings.github.io/ont/martialsoc.owl.ttl>
-
+<http://crossings.github.io/ont/martialarts> rdf:type owl:Ontology ;
+    dct:title   "The Martial Arts ontology"    ;
+    dct:description   "This is the root module of an ontology network that models martial arts with a view on identify cultural heritage elements within them. To view all the aspects presently covered, please load the ontologies using this module alone. Note that some classes act as contact points between modules."@en    ;
+    dct:creator   <https://orcid.org/0000-0002-9272-908X>    ;
+    owl:imports <http://crossings.github.io/ont/martialmotion.owl.ttl>  ,
+        <http://crossings.github.io/ont/martialstyle.owl.ttl>    ,
+        <http://crossings.github.io/ont/martialsoc.owl.ttl>
+.

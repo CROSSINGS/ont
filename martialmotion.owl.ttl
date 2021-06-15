@@ -1,4 +1,4 @@
-@prefix : <http://semanticweb.org/ont/martialmotion#> .
+@prefix : <http://crossings.github.io/term/> .
 @prefix dct: <http://purl.org/dc/terms/> .
 @prefix dul: <http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#> .
 @prefix mil: <http://rdf.muninn-project.org/ontologies/military#> .
@@ -7,10 +7,11 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@base <http://semanticweb.org/ont/martialmotion> .
+@base <http://crossings.github.io/ont/martialmotion> .
 
-<http://semanticweb.org/ont/martialmotion> rdf:type owl:Ontology ;
+<http://crossings.github.io/ont/martialmotion> rdf:type owl:Ontology ;
                                             dct:title "MartialMotion" ;
+                                                dct:creator   <https://orcid.org/0000-0002-9272-908X>    ;
                                             rdfs:comment "TODO: model the anatomy of weapon parts (e.g. ends of a staff)"@en ,
                                                          "This ontology is currently set to encompass both kinetic and cultural traits of martial disciplines, however it may be modularised in future iterations, possibly covering distinct arts/cultures."@en .
 
