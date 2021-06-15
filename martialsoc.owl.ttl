@@ -9,7 +9,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <http://crossings.github.io/ont/martialcomm> rdf:type owl:Ontology ;
-                                            dct:title "Martial Communication" ;
+    dct:title   "The Martial Arts ontology: Social framework"    ;
                                                 dct:creator   <https://orcid.org/0000-0002-9272-908X>    ;
                                             dct:description "Ontology module that covers the aspects related to communicating the notion of martial arts to others, especially related to pedagogical aspects of teaching, learning and evaluating, but also in dissemination and competition."@en .
 
@@ -35,3 +35,15 @@
                rdfs:domain :GradingSystem ;
                rdfs:comment "Applies to a styling system, or to a spatio-temporally indexed situation for it (e.g. the way belt colors/strips were being assigned to kyus in karate by a certain federation during a certain period)"@en ;
                rdfs:label "is graded using"@en .
+               
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Choreography
+                :StylingSystem
+                :Technique
+              )
+] .

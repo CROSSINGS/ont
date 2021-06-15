@@ -10,3 +10,133 @@
     dct:title   "The Martial Arts ontology: Stylistic framework"    ;
     dct:creator   <https://orcid.org/0000-0002-9272-908X>
 .
+
+
+###  http://semanticweb.org/ont/martialmotion#belongsInSystem
+:belongsInSystem rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Technique ;
+                 rdfs:range :StylingSystem ;
+                 rdfs:label "belongs in system" .
+                 
+###  http://semanticweb.org/ont/martialmotion#isFeatureOf
+:isFeatureOf rdf:type owl:ObjectProperty ;
+             rdfs:range [ rdf:type owl:Class ;
+                          owl:unionOf ( :StylingSystem
+                                        :Technique
+                                      )
+                        ] .
+
+
+
+
+
+###  http://semanticweb.org/ont/martialmotion#symbolicallyRepresents
+:symbolicallyRepresents rdf:type owl:ObjectProperty ;
+                        rdfs:domain [ rdf:type owl:Class ;
+                                      owl:unionOf ( :Choreography
+                                                    :StylingSystem
+                                                    :Technique
+                                                  )
+                                    ] ;
+                        dct:description "the symbolic binding between a form, technique etc. and a wordly entity, e.g. the relationship between a kata and the combat it simulates, or a crane style with a crane's movements."@en ;
+                        rdfs:comment "TODO map to CIDOC CRM symbolic representations or with DOLCE"@en ;
+                        rdfs:label "symbolically represents"@en .
+                        
+###  http://semanticweb.org/ont/martialmotion#AmbiTechnique
+:AmbiTechnique rdf:type owl:Class ;
+               rdfs:subClassOf :FrontalTechnique ,
+                               :ReverseTechnique ;
+               dct:description "A technique that has both at least one frontal element and at least one reverse element."@en ;
+               rdfs:comment "e.g. holding a staff in the middle and using both ends to attack."@en ;
+               rdfs:label "ambivalent technique"@en .
+
+###  http://semanticweb.org/ont/martialmotion#Choreography
+:Choreography rdf:type owl:Class ;
+              rdfs:subClassOf dul:Method ;
+              rdfs:comment "Forms. Examples include Japanese kata, Chinese taolu, Korean hyung, and Southeast Asian jurus (preset) and tari (freeform)"@en ,
+                           "TODO: make a separate class for Form?"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#DynamicTrainingMethod
+:DynamicTrainingMethod rdf:type owl:Class ;
+                       rdfs:subClassOf :TrainingMethod ;
+                       owl:disjointWith :StaticTrainingMethod ;
+                       rdfs:label "dynamic training method" .
+
+
+###  http://semanticweb.org/ont/martialmotion#EmptyHandTechnique
+:EmptyHandTechnique rdf:type owl:Class ;
+                    rdfs:subClassOf :Technique ,
+                                    [ rdf:type owl:Restriction ;
+                                      owl:onProperty :employsArmament ;
+                                      owl:allValuesFrom :BodyPartType
+                                    ] ;
+                    owl:disjointWith :WeaponTechnique .
+
+
+###  http://semanticweb.org/ont/martialmotion#FrontalTechnique
+:FrontalTechnique rdf:type owl:Class ;
+                  rdfs:subClassOf :Technique ;
+                  rdfs:label "frontal technique" .
+                  
+###  http://semanticweb.org/ont/martialmotion#HardApproach
+:HardApproach rdf:type owl:Class ;
+              rdfs:subClassOf :IntentiveApproach ;
+              dct:description "An intent that requires hardening of the body prior to the execution of a technique."@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#IntentiveApproach
+:IntentiveApproach rdf:type owl:Class ;
+                   dct:description "an approach with an intent (e.g. to attack, distract or defend)"@en ;
+                   rdfs:label "intentive approach"@en .
+
+###  http://semanticweb.org/ont/martialmotion#ReverseTechnique
+:ReverseTechnique rdf:type owl:Class ;
+                  rdfs:subClassOf :Technique ;
+                  rdfs:label "reverse technique" .
+
+
+###  http://semanticweb.org/ont/martialmotion#SoftApproach
+:SoftApproach rdf:type owl:Class ;
+              rdfs:subClassOf :IntentiveApproach ;
+              dct:description "An intent that requires loosening of the body prior to the execution of a technique."@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#StaticTrainingMethod
+:StaticTrainingMethod rdf:type owl:Class ;
+                      rdfs:subClassOf :TrainingMethod ;
+                      rdfs:label "static training method" .
+
+###  http://semanticweb.org/ont/martialmotion#StylingSystem
+:StylingSystem rdf:type owl:Class ;
+               rdfs:subClassOf dul:Method ;
+               dct:description "Combination of techniques under a common aegis (e.g. Wado-ryu karate, Hakka staff-fighting system)."@en ;
+               rdfs:label "styling system"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#Technique
+:Technique rdf:type owl:Class ;
+           rdfs:subClassOf dul:Method ;
+           dct:description "What can atomically be considered a technique (e.g. stance, hand form) or combination thereof."@en ;
+           rdfs:label "martial technique"@en .
+
+
+###  http://semanticweb.org/ont/martialmotion#TrainingMethod
+:TrainingMethod rdf:type owl:Class ;
+                rdfs:subClassOf dul:Method ;
+                dct:description "a way of matering a styling system, or a technique therein"@en ;
+                rdfs:label "training method" .
+
+
+###  http://semanticweb.org/ont/martialmotion#TrainingSet
+:TrainingSet rdf:type owl:Class ;
+             dct:description "A training method (in a technique or for a whole style) may be comprised of separate training sets, e.g. one solo and one for sparring in two or more."@en ;
+             rdfs:label "training set" .
+             
+###  http://semanticweb.org/ont/martialmotion#WeaponTechnique
+:WeaponTechnique rdf:type owl:Class ;
+                 rdfs:subClassOf :Technique ,
+                                 [ rdf:type owl:Restriction ;
+                                   owl:onProperty :employsArmament ;
+                                   owl:someValuesFrom :WeaponType
+                                 ] .
