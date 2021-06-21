@@ -11,7 +11,12 @@
 <http://crossings.github.io/ont/martialsoc> rdf:type owl:Ontology ;
     dct:title   "The Martial Arts ontology: Social framework"    ;
                                                 dct:creator   <https://orcid.org/0000-0002-9272-908X>    ;
-                                            dct:description "Ontology module that covers the aspects related to communicating the notion of martial arts to others, especially related to pedagogical aspects of teaching, learning and evaluating, but also in dissemination and competition."@en .
+                                            dct:description "Ontology module that covers the aspects related to how the notions of martial arts to are taught, spread or otherwise communicated to others. This is especially related to pedagogical aspects of teaching, learning and evaluating, but also to such things as dissemination and competition. However, aspects that are akin to sports disciplines (such as the organisation of competitions) will not be covered."@en .
+
+:adoptsSyllabus a  owl:ObjectProperty
+    ; rdfs:label "adopts syllabus"@en
+    ; rdfs:range :Syllabus
+.
 
 :taughtAt a owl:ObjectProperty
     ; rdfs:label "taught at"@en
@@ -21,7 +26,7 @@
 
 :MartialArtsCommunity a owl:Class
     ; rdfs:label "martial arts community"@en
-    ; dct:description "A collective social gathering of martial arts practitioners. It can be officially sanctioned like a school or federation, or otherwise like a clan or sect."@en
+    ; dct:description "An endurant, collective agent whose members share the practitioning of a martial art. It can be officially sanctioned, such as a school or sports federation, or otherwise, such as a clan or sect."@en
     ; rdfs:subClassOf dul:CollectiveAgent
 .
 
@@ -30,6 +35,11 @@
                rdfs:subClassOf dul:Norm ;
                rdfs:label "grading system" .
 
+:Syllabus rdf:type owl:Class ;
+               rdfs:subClassOf dul:Norm ;
+               rdfs:label "syllabus"
+.
+
 ###  http://semanticweb.org/ont/martialmotion#isGradedUsing
 :isGradedUsing rdf:type owl:ObjectProperty ;
                rdfs:domain :GradingSystem ;
@@ -37,13 +47,3 @@
                rdfs:label "is graded using"@en .
                
 
-#################################################################
-#    General axioms
-#################################################################
-
-[ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Choreography
-                :StylingSystem
-                :Technique
-              )
-] .

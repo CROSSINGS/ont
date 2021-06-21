@@ -32,16 +32,17 @@
 
 
 ###  http://semanticweb.org/ont/martialmotion#symbolicallyRepresents
-:symbolicallyRepresents rdf:type owl:ObjectProperty ;
+:representedBy rdf:type owl:ObjectProperty ;
                         rdfs:domain [ rdf:type owl:Class ;
                                       owl:unionOf ( :Choreography
                                                     :StylingSystem
                                                     :Technique
                                                   )
                                     ] ;
+                        rdfs:range :SymbolicObject ;
                         dct:description "the symbolic binding between a form, technique etc. and a wordly entity, e.g. the relationship between a kata and the combat it simulates, or a crane style with a crane's movements."@en ;
                         rdfs:comment "TODO map to CIDOC CRM symbolic representations or with DOLCE"@en ;
-                        rdfs:label "symbolically represents"@en .
+                        rdfs:label "represented by"@en .
                         
 ###  http://semanticweb.org/ont/martialmotion#AmbiTechnique
 :AmbiTechnique rdf:type owl:Class ;
@@ -114,6 +115,10 @@
                dct:description "Combination of techniques under a common aegis (e.g. Wado-ryu karate, Hakka staff-fighting system)."@en ;
                rdfs:label "styling system"@en .
 
+:SymbolicObject a owl:Class ;
+               dct:description "Anything that is used as an allegory for a technique or style (e.g. the crane, the monkey or the drunken man). Note that, much like topics, things will rarely be materially typed with this class, so it should primarily be used in inference rules. Also note that many symbolic objects may denote classes, which may be used here as individuals by reason of punning."@en ;
+               rdfs:label "symbolic object"@en .
+.
 
 ###  http://semanticweb.org/ont/martialmotion#Technique
 :Technique rdf:type owl:Class ;
@@ -141,3 +146,14 @@
                                    owl:onProperty :employsArmament ;
                                    owl:someValuesFrom :WeaponType
                                  ] .
+
+#################################################################
+#    General axioms
+#################################################################
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :Choreography
+                :StylingSystem
+                :Technique
+              )
+] .
