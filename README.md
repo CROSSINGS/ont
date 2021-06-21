@@ -6,10 +6,10 @@ This branch contains ontology-related sources and documents.
 
 ## Ontologies
 
-* [Martial Arts](martialarts.owl.ttl) (root)
-    - [Kinesthetic](martialmotion.owl.ttl) ([doc](https://w3id.org/lode/https://crossings.github.io/ont/martialmotion.owl.ttl?owlapi=true))
-    - [Stylistic](martialstyle.owl.ttl) ([doc](https://w3id.org/lode/https://crossings.github.io/ont/martialstyle.owl.ttl?owlapi=true))
-    - [Social](martialsoc.owl.ttl) ([doc](https://w3id.org/lode/https://crossings.github.io/ont/martialsoc.owl.ttl?owlapi=true))
+* [Martial Arts](martialarts) (root)  ([doc](https://w3id.org/lode/https://crossings.github.io/ont/martialarts?owlapi=true))
+    - [Kinesthetic](martialmotion) ([doc](https://w3id.org/lode/https://crossings.github.io/ont/martialmotion?owlapi=true))
+    - [Stylistic](martialstyle) ([doc](https://w3id.org/lode/https://crossings.github.io/ont/martialstyle?owlapi=true))
+    - [Social](martialsoc) ([doc](https://w3id.org/lode/https://crossings.github.io/ont/martialsoc?owlapi=true))
 
 ## Rights
 
