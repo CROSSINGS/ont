@@ -117,7 +117,7 @@
 
 :SymbolicObject a owl:Class ;
                dct:description "Anything that is used as an allegory for a technique or style (e.g. the crane, the monkey or the drunken man). Note that, much like topics, things will rarely be materially typed with this class, so it should primarily be used in inference rules. Also note that many symbolic objects may denote classes, which may be used here as individuals by reason of punning."@en ;
-               rdfs:label "symbolic object"@en .
+               rdfs:label "symbolic object"@en
 .
 
 ###  http://semanticweb.org/ont/martialmotion#Technique
