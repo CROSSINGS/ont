@@ -8,7 +8,7 @@
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
-<http://crossings.github.io/ont/martialcomm> rdf:type owl:Ontology ;
+<http://crossings.github.io/ont/martialsoc> rdf:type owl:Ontology ;
     dct:title   "The Martial Arts ontology: Social framework"    ;
                                                 dct:creator   <https://orcid.org/0000-0002-9272-908X>    ;
                                             dct:description "Ontology module that covers the aspects related to communicating the notion of martial arts to others, especially related to pedagogical aspects of teaching, learning and evaluating, but also in dissemination and competition."@en .
