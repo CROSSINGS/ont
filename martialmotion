@@ -12,8 +12,7 @@
 <http://crossings.github.io/ont/martialmotion> rdf:type owl:Ontology ;
                                                 dct:creator <https://orcid.org/0000-0002-9272-908X> ;
                                                 dct:title "The Martial Arts ontology: Kinesthetic framework" ;
-                                                rdfs:comment "TODO: model the anatomy of weapon parts (e.g. ends of a staff)"@en ,
-                                                             "This ontology is currently set to encompass both kinetic and cultural traits of martial disciplines, however it may be modularised in future iterations, possibly covering distinct arts/cultures."@en .
+                                                rdfs:comment "This ontology is currently set to encompass both kinetic and cultural traits of martial disciplines, however it may be modularised in future iterations, possibly covering distinct arts/cultures.\n\nTODO: model the anatomy of weapon parts (e.g. ends of a staff)"@en .
 
 #################################################################
 #    Annotation properties
