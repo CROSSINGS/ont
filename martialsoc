@@ -7,43 +7,144 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://crossings.github.io/ont/martialsoc> .
 
 <http://crossings.github.io/ont/martialsoc> rdf:type owl:Ontology ;
-    dct:title   "The Martial Arts ontology: Social framework"    ;
-                                                dct:creator   <https://orcid.org/0000-0002-9272-908X>    ;
-                                            dct:description "Ontology module that covers the aspects related to how the notions of martial arts to are taught, spread or otherwise communicated to others. This is especially related to pedagogical aspects of teaching, learning and evaluating, but also to such things as dissemination and competition. However, aspects that are akin to sports disciplines (such as the organisation of competitions) will not be covered."@en .
+                                             dct:creator <https://orcid.org/0000-0002-9272-908X> ;
+                                             dct:description "Ontology module that covers the aspects related to how the notions of martial arts to are taught, spread or otherwise communicated to others. This is especially related to pedagogical aspects of teaching, learning and evaluating, but also to such things as dissemination and competition. However, aspects that are akin to sports disciplines (such as the organisation of competitions or their rules) will not be covered."@en ;
+                                             dct:title "The Martial Arts ontology: Social framework" .
 
-:adoptsSyllabus a  owl:ObjectProperty
-    ; rdfs:label "adopts syllabus"@en
-    ; rdfs:range :Syllabus
-.
+#################################################################
+#    Annotation properties
+#################################################################
 
-:taughtAt a owl:ObjectProperty
-    ; rdfs:label "taught at"@en
-    ; rdfs:domain :StylingSystem
-    ; rdfs:range :MartialArtsCommunity
-.
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
 
-:MartialArtsCommunity a owl:Class
-    ; rdfs:label "martial arts community"@en
-    ; dct:description "An endurant, collective agent whose members share the practitioning of a martial art. It can be officially sanctioned, such as a school or sports federation, or otherwise, such as a clan or sect."@en
-    ; rdfs:subClassOf dul:CollectiveAgent
-.
 
-###  http://semanticweb.org/ont/martialmotion#GradingSystem
-:GradingSystem rdf:type owl:Class ;
-               rdfs:subClassOf dul:Norm ;
-               rdfs:label "grading system" .
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty .
 
-:Syllabus rdf:type owl:Class ;
-               rdfs:subClassOf dul:Norm ;
-               rdfs:label "syllabus"
-.
 
-###  http://semanticweb.org/ont/martialmotion#isGradedUsing
+###  http://purl.org/dc/terms/title
+dct:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://crossings.github.io/term/adoptsSyllabus
+:adoptsSyllabus rdf:type owl:ObjectProperty ;
+                rdfs:range :Syllabus ;
+                rdfs:label "adopts syllabus"@en .
+
+
+###  http://crossings.github.io/term/expectsMasteryOf
+:expectsMasteryOf rdf:type owl:ObjectProperty ;
+                  rdfs:domain :Requirement ;
+                  rdfs:range [ rdf:type owl:Class ;
+                               owl:unionOf ( :Form
+                                             :Technique
+                                           )
+                             ] ;
+                  rdfs:label "expects mastery of"@en .
+
+
+###  http://crossings.github.io/term/hasRequirement
+:hasRequirement rdf:type owl:ObjectProperty ;
+                owl:inverseOf :isRequiredForDegree ;
+                rdfs:label "has requirement"@en .
+
+
+###  http://crossings.github.io/term/isGradedUsing
 :isGradedUsing rdf:type owl:ObjectProperty ;
                rdfs:domain :GradingSystem ;
                rdfs:comment "Applies to a styling system, or to a spatio-temporally indexed situation for it (e.g. the way belt colors/strips were being assigned to kyus in karate by a certain federation during a certain period)"@en ;
                rdfs:label "is graded using"@en .
-               
 
+
+###  http://crossings.github.io/term/isRequiredForDegree
+:isRequiredForDegree rdf:type owl:ObjectProperty ;
+                     rdfs:domain :Requirement ;
+                     rdfs:range :Degree ;
+                     rdfs:label "is required for degree"@en .
+
+
+###  http://crossings.github.io/term/taughtAt
+:taughtAt rdf:type owl:ObjectProperty ;
+          owl:inverseOf :teaches ;
+          rdfs:domain :StylingSystem ;
+          rdfs:range :MartialArtsCommunity ;
+          rdfs:label "taught at"@en .
+
+
+###  http://crossings.github.io/term/teaches
+:teaches rdf:type owl:ObjectProperty ;
+         rdfs:label "teaches"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://crossings.github.io/term/Degree
+:Degree rdf:type owl:Class ;
+        dct:description "A measure of one's mastery of an art or style. Example: a belt in karate"@en ;
+        rdfs:label "degree"@en .
+
+
+###  http://crossings.github.io/term/Form
+:Form rdf:type owl:Class .
+
+
+###  http://crossings.github.io/term/GradingSystem
+:GradingSystem rdf:type owl:Class ;
+               rdfs:subClassOf dul:Norm ;
+               rdfs:comment "The system used in a style, school etc. to assess and formally represent the mastery reached by a student. An example is the omnipresent belt grading system adopted in karate, though the scales (actual belts and their representation in a syllabus) may vary"@en ;
+               rdfs:label "grading system" .
+
+
+###  http://crossings.github.io/term/MartialArtsCommunity
+:MartialArtsCommunity rdf:type owl:Class ;
+                      rdfs:subClassOf dul:CollectiveAgent ,
+                                      [ rdf:type owl:Restriction ;
+                                        owl:onProperty :adoptsSyllabus ;
+                                        owl:someValuesFrom :Syllabus
+                                      ] ;
+                      dct:description "An endurant, collective agent whose members share the practitioning of a martial art. It can be officially sanctioned, such as a school or sports federation, or otherwise, such as a clan or sect."@en ;
+                      rdfs:label "martial arts community"@en .
+
+
+###  http://crossings.github.io/term/Requirement
+:Requirement rdf:type owl:Class .
+
+
+###  http://crossings.github.io/term/StylingSystem
+:StylingSystem rdf:type owl:Class .
+
+
+###  http://crossings.github.io/term/Syllabus
+:Syllabus rdf:type owl:Class ;
+          rdfs:subClassOf dul:Norm ,
+                          [ rdf:type owl:Restriction ;
+                            owl:onProperty :hasRequirement ;
+                            owl:someValuesFrom :Requirement
+                          ] ;
+          rdfs:comment "A collection of requirements that associate practices to degrees."@en ;
+          rdfs:label "syllabus" .
+
+
+###  http://crossings.github.io/term/Technique
+:Technique rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#CollectiveAgent
+dul:CollectiveAgent rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Norm
+dul:Norm rdf:type owl:Class .
+
+
+###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

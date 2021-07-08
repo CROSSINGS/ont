@@ -28,8 +28,13 @@
                         ] .
 
 
-
-
+###  http://semanticweb.org/ont/martialmotion#employsArmament
+:employsArmament rdf:type owl:ObjectProperty ;
+                rdfs:domain dul:Method ;
+                 rdfs:range :Armament ;
+                 rdfs:label "employs armament"@en;
+                 rdfs:comment "Used to denote that a formal/methodological martial framework (e.g. a technique or entire style) foresees the use of a particular type of weaponry. It should not be used to denote that a particular _execution_ was carried out with that kind of weapon."@en
+.
 
 ###  http://semanticweb.org/ont/martialmotion#symbolicallyRepresents
 :representedBy rdf:type owl:ObjectProperty ;
