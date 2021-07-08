@@ -45,7 +45,7 @@
                                                   )
                                     ] ;
                         rdfs:range :SymbolicObject ;
-                        dct:description "the symbolic binding between a form, technique etc. and a wordly entity, e.g. the relationship between a kata and the combat it simulates, or a crane style with a crane's movements."@en ;
+                        rdfs:comment "the symbolic binding between a form, technique etc. and a wordly entity, e.g. the relationship between a kata and the combat it simulates, or a crane style with a crane's movements."@en ;
                         rdfs:comment "TODO map to CIDOC CRM symbolic representations or with DOLCE"@en ;
                         rdfs:label "represented by"@en .
                         
@@ -89,12 +89,12 @@
 ###  http://semanticweb.org/ont/martialmotion#HardApproach
 :HardApproach rdf:type owl:Class ;
               rdfs:subClassOf :IntentiveApproach ;
-              dct:description "An intent that requires hardening of the body prior to the execution of a technique."@en .
+              rdfs:comment "An intent that requires hardening of the body prior to the execution of a technique."@en .
 
 
 ###  http://semanticweb.org/ont/martialmotion#IntentiveApproach
 :IntentiveApproach rdf:type owl:Class ;
-                   dct:description "an approach with an intent (e.g. to attack, distract or defend)"@en ;
+                   rdfs:comment "an approach with an intent (e.g. to attack, distract or defend)"@en ;
                    rdfs:label "intentive approach"@en .
 
 ###  http://semanticweb.org/ont/martialmotion#ReverseTechnique
@@ -106,7 +106,7 @@
 ###  http://semanticweb.org/ont/martialmotion#SoftApproach
 :SoftApproach rdf:type owl:Class ;
               rdfs:subClassOf :IntentiveApproach ;
-              dct:description "An intent that requires loosening of the body prior to the execution of a technique."@en .
+              rdfs:comment "An intent that requires loosening of the body prior to the execution of a technique."@en .
 
 
 ###  http://semanticweb.org/ont/martialmotion#StaticTrainingMethod
@@ -117,31 +117,31 @@
 ###  http://semanticweb.org/ont/martialmotion#StylingSystem
 :StylingSystem rdf:type owl:Class ;
                rdfs:subClassOf dul:Method ;
-               dct:description "Combination of techniques under a common aegis (e.g. Wado-ryu karate, Hakka staff-fighting system)."@en ;
+               rdfs:comment "Combination of techniques under a common aegis (e.g. Wado-ryu karate, Hakka staff-fighting system)."@en ;
                rdfs:label "styling system"@en .
 
 :SymbolicObject a owl:Class ;
-               dct:description "Anything that is used as an allegory for a technique or style (e.g. the crane, the monkey or the drunken man). Note that, much like topics, things will rarely be materially typed with this class, so it should primarily be used in inference rules. Also note that many symbolic objects may denote classes, which may be used here as individuals by reason of punning."@en ;
+               rdfs:comment "Anything that is used as an allegory for a technique or style (e.g. the crane, the monkey or the drunken man). Note that, much like topics, things will rarely be materially typed with this class, so it should primarily be used in inference rules. Also note that many symbolic objects may denote classes, which may be used here as individuals by reason of punning."@en ;
                rdfs:label "symbolic object"@en
 .
 
 ###  http://semanticweb.org/ont/martialmotion#Technique
 :Technique rdf:type owl:Class ;
            rdfs:subClassOf dul:Method ;
-           dct:description "What can atomically be considered a technique (e.g. stance, hand form) or combination thereof."@en ;
+           rdfs:comment "What can atomically be considered a technique (e.g. stance, hand form) or combination thereof."@en ;
            rdfs:label "martial technique"@en .
 
 
 ###  http://semanticweb.org/ont/martialmotion#TrainingMethod
 :TrainingMethod rdf:type owl:Class ;
                 rdfs:subClassOf dul:Method ;
-                dct:description "a way of matering a styling system, or a technique therein"@en ;
+                rdfs:comment "a way of matering a styling system, or a technique therein"@en ;
                 rdfs:label "training method" .
 
 
 ###  http://semanticweb.org/ont/martialmotion#TrainingSet
 :TrainingSet rdf:type owl:Class ;
-             dct:description "A training method (in a technique or for a whole style) may be comprised of separate training sets, e.g. one solo and one for sparring in two or more."@en ;
+             rdfs:comment "A training method (in a technique or for a whole style) may be comprised of separate training sets, e.g. one solo and one for sparring in two or more."@en ;
              rdfs:label "training set" .
              
 ###  http://semanticweb.org/ont/martialmotion#WeaponTechnique

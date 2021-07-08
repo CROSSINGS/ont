@@ -90,7 +90,7 @@ dct:title rdf:type owl:AnnotationProperty .
 
 ###  http://crossings.github.io/term/Degree
 :Degree rdf:type owl:Class ;
-        dct:description "A measure of one's mastery of an art or style. Example: a belt in karate"@en ;
+        rdfs:comment "A measure of one's mastery of an art or style. Example: a belt in karate"@en ;
         rdfs:label "degree"@en .
 
 
@@ -112,7 +112,7 @@ dct:title rdf:type owl:AnnotationProperty .
                                         owl:onProperty :adoptsSyllabus ;
                                         owl:someValuesFrom :Syllabus
                                       ] ;
-                      dct:description "An endurant, collective agent whose members share the practitioning of a martial art. It can be officially sanctioned, such as a school or sports federation, or otherwise, such as a clan or sect."@en ;
+                      rdfs:comment "An endurant, collective agent whose members share the practitioning of a martial art. It can be officially sanctioned, such as a school or sports federation, or otherwise, such as a clan or sect."@en ;
                       rdfs:label "martial arts community"@en .
 
 
