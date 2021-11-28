@@ -130,7 +130,6 @@ dul:isPartOf rdf:type owl:ObjectProperty .
            rdfs:label "vital flow"@en .
 
 
-<<<<<<< HEAD
 ###  http://semanticweb.org/ont/martialmotion#VitalFlowTransmissionType
 :VitalFlowTransmissionType rdf:type owl:Class ;
            rdfs:subClassOf dul:Quality ;
@@ -138,10 +137,8 @@ dul:isPartOf rdf:type owl:ObjectProperty .
            rdfs:label "vital flow transmission type"@en .
 
 
-###  http://semanticweb.org/ont/martialmotion#WeaponType
-=======
+
 ###  http://crossings.github.io/term/WeaponType
->>>>>>> a5c2933e10fd130210edb0cf5003659456ae7dd6
 :WeaponType rdf:type owl:Class ;
             owl:equivalentClass mil:Weapon ;
             rdfs:subClassOf :Armament ;
