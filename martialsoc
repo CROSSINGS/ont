@@ -24,6 +24,26 @@
     ; rdfs:range :MartialArtsCommunity
 .
 
+:acquiredStatus a  owl:ObjectProperty
+    ; rdfs:label "acquired status"@en
+    ; rdfs:domain dul:Person
+    ; rdfs:range :StatusAcquisition
+.
+
+:acquisitionHasStatus a  owl:ObjectProperty
+    ; rdfs:label "acquisition has status"@en
+    ; dct:description "the status (e.g. salutation, title) that is object of the acquisition."@en
+    ; rdfs:domain :StatusAcquisition
+    ; rdfs:range :Status
+.
+
+:acquisitionHasObject a  owl:ObjectProperty
+    ; rdfs:label "acquisition has object"@en
+    ; dct:description "the context of the acquisition, such as a style or art."@en
+    ; rdfs:domain :StatusAcquisition
+    ; rdfs:range :StylingSystem
+.
+
 :MartialArtsCommunity a owl:Class
     ; rdfs:label "martial arts community"@en
     ; dct:description "An endurant, collective agent whose members share the practitioning of a martial art. It can be officially sanctioned, such as a school or sports federation, or otherwise, such as a clan or sect."@en
@@ -33,11 +53,22 @@
 ###  http://semanticweb.org/ont/martialmotion#GradingSystem
 :GradingSystem rdf:type owl:Class ;
                rdfs:subClassOf dul:Norm ;
-               rdfs:label "grading system" .
+               rdfs:label "grading system"@en .
+
+:Status rdf:type owl:Class ;
+               rdfs:label "status"@en ;
+               dct:description "a denomination, earned or acquired, associated to the social fabric of martian arts transmission, such as that of Sensei or Shifu. Note that is is not necessarily a qualification, as in non-normed contexts it may not be awarded."@en
+.
+
+:StatusAcquisition rdf:type owl:Class ;
+               rdfs:subClassOf dul:Event ;			
+               rdfs:label "status acquisition"@en ;
+               dct:description "the event whereby a status s acquired."@en
+.
 
 :Syllabus rdf:type owl:Class ;
                rdfs:subClassOf dul:Norm ;
-               rdfs:label "syllabus"
+               rdfs:label "syllabus"@en
 .
 
 ###  http://semanticweb.org/ont/martialmotion#isGradedUsing

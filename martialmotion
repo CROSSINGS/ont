@@ -156,7 +156,11 @@ mil:Weapon rdf:type owl:Class ;
            rdfs:label "vital flow"@en .
 
 
-
+###  http://semanticweb.org/ont/martialmotion#VitalFlowTransmissionType
+:VitalFlowTransmissionType rdf:type owl:Class ;
+           rdfs:subClassOf dul:Quality ;
+           dct:description "Some cultures distinguish the different ways in which the strength of a technique is conveyed or perceived, e.g. at the point of impact (external) or through other motions of the body (internal)."@en ;
+           rdfs:label "vital flow transmission type"@en .
 
 
 ###  http://semanticweb.org/ont/martialmotion#WeaponType
