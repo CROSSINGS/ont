@@ -10,49 +10,43 @@
 @base <http://crossings.github.io/ont/martialmotion> .
 
 <http://crossings.github.io/ont/martialmotion> rdf:type owl:Ontology ;
-    dct:title   "The Martial Arts ontology: Kinesthetic framework"    ;
-                                                dct:creator   <https://orcid.org/0000-0002-9272-908X>    ;
-                                            rdfs:comment "TODO: model the anatomy of weapon parts (e.g. ends of a staff)"@en ,
-                                                         "This ontology is currently set to encompass both kinetic and cultural traits of martial disciplines, however it may be modularised in future iterations, possibly covering distinct arts/cultures."@en .
+                                                dct:creator <https://orcid.org/0000-0002-9272-908X> ;
+                                                dct:title "The Martial Arts ontology: Kinesthetic framework" ;
+                                                rdfs:comment "This ontology is currently set to encompass both kinetic and cultural traits of martial disciplines, however it may be modularised in future iterations, possibly covering distinct arts/cultures.\n\nTODO: model the anatomy of weapon parts (e.g. ends of a staff)"@en .
 
 #################################################################
 #    Annotation properties
 #################################################################
 
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/terms/description
 dct:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dct:title rdf:type owl:AnnotationProperty .
 
 
 #################################################################
 #    Object Properties
 #################################################################
 
-
-
-
-###  http://semanticweb.org/ont/martialmotion#employsArmament
-:employsArmament rdf:type owl:ObjectProperty ;
-                 rdfs:domain :Technique ;
-                 rdfs:range :Armament ;
-                 rdfs:label "employs armament" .
-
-
-###  http://semanticweb.org/ont/martialmotion#handles
+###  http://crossings.github.io/term/handles
 :handles rdf:type owl:ObjectProperty ;
          rdfs:domain :Handling ;
          rdfs:range :WeaponType .
 
 
-###  http://semanticweb.org/ont/martialmotion#inState
+###  http://crossings.github.io/term/inState
 :inState rdf:type owl:ObjectProperty ;
          rdfs:domain :BodyPartType ;
          rdfs:range :BodilyState .
 
 
-
-
-
-###  http://semanticweb.org/ont/martialmotion#withGrip
+###  http://crossings.github.io/term/withGrip
 :withGrip rdf:type owl:ObjectProperty ;
           rdfs:domain :Handling ;
           rdfs:range :Grip .
@@ -66,20 +60,13 @@ dul:isPartOf rdf:type owl:ObjectProperty .
 #    Classes
 #################################################################
 
-###  http://rdf.muninn-project.org/ontologies/military#Weapon
-mil:Weapon rdf:type owl:Class ;
-           owl:equivalentClass :WeaponType .
-
-
-
-
-
-###  http://semanticweb.org/ont/martialmotion#Armament
+###  http://crossings.github.io/term/Armament
 :Armament rdf:type owl:Class ;
+          rdfs:label "armament"@en ;
           rdfs:comment "A type of device with the potential to cause or impede harm. Types of body parts, or of stances assumed by them, may be classified as such."@en .
 
 
-###  http://semanticweb.org/ont/martialmotion#BodilyHardness
+###  http://crossings.github.io/term/BodilyHardness
 :BodilyHardness rdf:type owl:Class ;
                 rdfs:subClassOf dul:Quality ,
                                 [ rdf:type owl:Restriction ;
@@ -90,72 +77,60 @@ mil:Weapon rdf:type owl:Class ;
                 rdfs:label "bodily hardness"@en .
 
 
-###  http://semanticweb.org/ont/martialmotion#BodilyState
-:BodilyState rdf:type owl:Class .
+###  http://crossings.github.io/term/BodilyState
+:BodilyState rdf:type owl:Class ;
+             rdfs:comment "Any qualifier that describes the state of a body, or part thereof, for the purpose of delivering a certain technique."@en ;
+             rdfs:label "bodily state"@en .
 
 
-###  http://semanticweb.org/ont/martialmotion#BodyPartType
+###  http://crossings.github.io/term/BodyPartType
 :BodyPartType rdf:type owl:Class ;
               rdfs:subClassOf :Armament ;
               owl:disjointWith :WeaponType ;
               rdfs:label "body part type" .
 
 
-
-
-
-
-
-
-###  http://semanticweb.org/ont/martialmotion#Grip
+###  http://crossings.github.io/term/Grip
 :Grip rdf:type owl:Class ;
       rdfs:subClassOf :BodilyState ;
-      dct:description "a way of keeping a hold on something, e.g. a loose grip on the part of a weapon where you move / side hands."@en ;
+      rdfs:comment "a way of keeping a hold on something, e.g. a loose grip on the part of a weapon where you move / side hands."@en ;
       rdfs:label "grip"@en .
 
 
-###  http://semanticweb.org/ont/martialmotion#Handling
+###  http://crossings.github.io/term/Handling
 :Handling rdf:type owl:Class ;
           rdfs:subClassOf :BodilyState ;
-          dct:description "the state of a body part as it is handling a physical object. Example: the hand that has a tight grip on the part of a pole where impact is expected."@en ;
+          rdfs:comment "the state of a body part as it is handling a physical object. Example: the hand that has a tight grip on the part of a pole where impact is expected."@en ;
           rdfs:label "handling"@en .
 
 
-
-
-
-###  http://semanticweb.org/ont/martialmotion#MeleeWeaponType
+###  http://crossings.github.io/term/MeleeWeaponType
 :MeleeWeaponType rdf:type owl:Class ;
                  rdfs:subClassOf :WeaponType ;
                  rdfs:label "melee weapon type" .
 
 
-###  http://semanticweb.org/ont/martialmotion#Posture
+###  http://crossings.github.io/term/Posture
 :Posture rdf:type owl:Class ;
          rdfs:subClassOf :BodilyState ;
-         dct:description "Not a technique in itself, but a possible requirement of a technique, e.g. Chin Cheung (War Palm) uses a low, wide posture."@en ;
-         rdfs:comment "TODO model the relation between posture and technique."@en ;
+         rdfs:comment "Not a technique in itself, but a possible requirement of a technique, e.g. Chin Cheung (War Palm) uses a low, wide posture."@en ,
+                      "TODO model the relation between posture and technique."@en ;
          rdfs:label "posture"@en .
 
 
-
-
-
-###  http://semanticweb.org/ont/martialmotion#Step
+###  http://crossings.github.io/term/Step
 :Step rdf:type owl:Class ;
       rdfs:subClassOf :BodilyState .
 
 
-
-
-
-###  http://semanticweb.org/ont/martialmotion#VitalFlow
+###  http://crossings.github.io/term/VitalFlow
 :VitalFlow rdf:type owl:Class ;
            rdfs:subClassOf dul:Quality ;
-           dct:description "A general quality that indicates a physical, mental or spiritual input by the practitioner: for example, the ki/qi (energy) or yi (intent)."@en ;
+           rdfs:comment "A general quality that indicates a physical, mental or spiritual input by the practitioner: for example, the ki/qi (energy) or yi (intent)."@en ;
            rdfs:label "vital flow"@en .
 
 
+<<<<<<< HEAD
 ###  http://semanticweb.org/ont/martialmotion#VitalFlowTransmissionType
 :VitalFlowTransmissionType rdf:type owl:Class ;
            rdfs:subClassOf dul:Quality ;
@@ -164,15 +139,22 @@ mil:Weapon rdf:type owl:Class ;
 
 
 ###  http://semanticweb.org/ont/martialmotion#WeaponType
+=======
+###  http://crossings.github.io/term/WeaponType
+>>>>>>> a5c2933e10fd130210edb0cf5003659456ae7dd6
 :WeaponType rdf:type owl:Class ;
+            owl:equivalentClass mil:Weapon ;
             rdfs:subClassOf :Armament ;
-            dct:description "Denotes an object that one wields with offensive intent."@en ;
+            rdfs:comment "Denotes an object that one wields with offensive intent."@en ;
             rdfs:label "weapon type" .
 
 
+###  http://rdf.muninn-project.org/ontologies/military#Weapon
+mil:Weapon rdf:type owl:Class .
 
 
-
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Quality
+dul:Quality rdf:type owl:Class .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi
