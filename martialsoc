@@ -10,10 +10,10 @@
 @base <http://crossings.github.io/ont/martialsoc> .
 
 <http://crossings.github.io/ont/martialsoc> rdf:type owl:Ontology ;
-    dct:title   "The Martial Arts ontology: Social framework"    ;
                                              dct:creator <https://orcid.org/0000-0002-9272-908X> ;
                                              rdfs:comment "Ontology module that covers the aspects related to how the notions of martial arts to are taught, spread or otherwise communicated to others. This is especially related to pedagogical aspects of teaching, learning and evaluating, but also to such things as dissemination and competition. However, aspects that are akin to sports disciplines (such as the organisation of competitions or their rules) will not be covered."@en ;
-                                             dct:title "The Martial Arts ontology: Social framework" .
+                                             dct:title "The Martial Arts ontology: Social framework" ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/> .
 
 #################################################################
 #    Annotation properties
