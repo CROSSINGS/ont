@@ -10,10 +10,10 @@
 @base <http://crossings.github.io/ont/martialsoc> .
 
 <http://crossings.github.io/ont/martialsoc> rdf:type owl:Ontology ;
-    dct:title   "The Martial Arts ontology: Social framework"    ;
                                              dct:creator <https://orcid.org/0000-0002-9272-908X> ;
-                                             rdfs:comment "Ontology module that covers the aspects related to how the notions of martial arts to are taught, spread or otherwise communicated to others. This is especially related to pedagogical aspects of teaching, learning and evaluating, but also to such things as dissemination and competition. However, aspects that are akin to sports disciplines (such as the organisation of competitions or their rules) will not be covered."@en ;
-                                             dct:title "The Martial Arts ontology: Social framework" .
+                                             dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+                                             dct:title "The Martial Arts ontology: Social framework" ;
+                                             rdfs:comment "Ontology module that covers the aspects related to how the notions of martial arts to are taught, spread or otherwise communicated to others. This is especially related to pedagogical aspects of teaching, learning and evaluating, but also to such things as dissemination and competition. However, aspects that are akin to sports disciplines (such as the organisation of competitions or their rules) will not be covered."@en .
 
 #################################################################
 #    Annotation properties
@@ -27,6 +27,10 @@ dct:creator rdf:type owl:AnnotationProperty .
 dct:description rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/terms/license
+dct:license rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/terms/title
 dct:title rdf:type owl:AnnotationProperty .
 
@@ -34,6 +38,29 @@ dct:title rdf:type owl:AnnotationProperty .
 #################################################################
 #    Object Properties
 #################################################################
+
+###  http://crossings.github.io/term/acquiredStatus
+:acquiredStatus rdf:type owl:ObjectProperty ;
+                rdfs:domain dul:Person ;
+                rdfs:range :StatusAcquisition ;
+                rdfs:label "acquired status"@en .
+
+
+###  http://crossings.github.io/term/acquisitionHasObject
+:acquisitionHasObject rdf:type owl:ObjectProperty ;
+                      rdfs:domain :StatusAcquisition ;
+                      rdfs:range :StylingSystem ;
+                      dct:description "the context of the acquisition, such as a style or art."@en ;
+                      rdfs:label "acquisition has object"@en .
+
+
+###  http://crossings.github.io/term/acquisitionHasStatus
+:acquisitionHasStatus rdf:type owl:ObjectProperty ;
+                      rdfs:domain :StatusAcquisition ;
+                      rdfs:range :Status ;
+                      dct:description "the status (e.g. salutation, title) that is object of the acquisition."@en ;
+                      rdfs:label "acquisition has status"@en .
+
 
 ###  http://crossings.github.io/term/adoptsSyllabus
 :adoptsSyllabus rdf:type owl:ObjectProperty ;
@@ -102,6 +129,7 @@ dct:title rdf:type owl:AnnotationProperty .
 ###  http://crossings.github.io/term/GradingSystem
 :GradingSystem rdf:type owl:Class ;
                rdfs:subClassOf dul:Norm ;
+               owl:disjointWith :Syllabus ;
                rdfs:comment "The system used in a style, school etc. to assess and formally represent the mastery reached by a student. An example is the omnipresent belt grading system adopted in karate, though the scales (actual belts and their representation in a syllabus) may vary"@en ;
                rdfs:label "grading system" .
 
@@ -121,34 +149,19 @@ dct:title rdf:type owl:AnnotationProperty .
 :Requirement rdf:type owl:Class .
 
 
+###  http://crossings.github.io/term/Status
+:Status rdf:type owl:Class .
+
+
+###  http://crossings.github.io/term/StatusAcquisition
+:StatusAcquisition rdf:type owl:Class ;
+                   rdfs:subClassOf dul:Event ;
+                   dct:description "the event whereby a status is acquired."@en ;
+                   rdfs:label "status acquisition"@en .
+
+
 ###  http://crossings.github.io/term/StylingSystem
 :StylingSystem rdf:type owl:Class .
-
-:acquiredStatus a  owl:ObjectProperty
-    ; rdfs:label "acquired status"@en
-    ; rdfs:domain dul:Person
-    ; rdfs:range :StatusAcquisition
-.
-
-:acquisitionHasStatus a  owl:ObjectProperty
-    ; rdfs:label "acquisition has status"@en
-    ; dct:description "the status (e.g. salutation, title) that is object of the acquisition."@en
-    ; rdfs:domain :StatusAcquisition
-    ; rdfs:range :Status
-.
-
-:acquisitionHasObject a  owl:ObjectProperty
-    ; rdfs:label "acquisition has object"@en
-    ; dct:description "the context of the acquisition, such as a style or art."@en
-    ; rdfs:domain :StatusAcquisition
-    ; rdfs:range :StylingSystem
-.
-
-:StatusAcquisition rdf:type owl:Class ;
-               rdfs:subClassOf dul:Event ;			
-               rdfs:label "status acquisition"@en ;
-               dct:description "the event whereby a status s acquired."@en
-.
 
 
 ###  http://crossings.github.io/term/Syllabus
@@ -170,8 +183,16 @@ dct:title rdf:type owl:AnnotationProperty .
 dul:CollectiveAgent rdf:type owl:Class .
 
 
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Event
+dul:Event rdf:type owl:Class .
+
+
 ###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Norm
 dul:Norm rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Person
+dul:Person rdf:type owl:Class .
 
 
 ###  Generated by the OWL API (version 4.5.9.2019-02-01T07:24:44Z) https://github.com/owlcs/owlapi

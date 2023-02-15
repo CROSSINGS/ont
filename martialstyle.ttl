@@ -8,6 +8,7 @@
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
 
 <http://crossings.github.io/ont/martialstyle> rdf:type owl:Ontology ;
+    dct:license <http://creativecommons.org/licenses/by/4.0/>    ;
     dct:title   "The Martial Arts ontology: Stylistic framework"    ;
     rdfs:comment "This is the module where the kinetic and kinesthetic features come together into formal methods that bubble up from indivudual techniques to styles and all the way complete martial arts."@en ;
     dct:creator   <https://orcid.org/0000-0002-9272-908X>
