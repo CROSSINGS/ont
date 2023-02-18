@@ -10,8 +10,8 @@
 @base <http://crossings.github.io/term/> .
 
 <http://crossings.github.io/ont/martialmotion> rdf:type owl:Ontology ;
-    dct:license <http://creativecommons.org/licenses/by/4.0/>    ;
                                                 dct:creator <https://orcid.org/0000-0002-9272-908X> ;
+                                                dct:license <http://creativecommons.org/licenses/by/4.0/> ;
                                                 dct:title "The Martial Arts ontology: Kinesthetic framework" ;
                                                 rdfs:comment """This ontology is currently set to encompass both kinetic and cultural traits of martial disciplines, however it may be modularised in future iterations, possibly covering distinct arts/cultures.
 
@@ -29,6 +29,10 @@ dct:creator rdf:type owl:AnnotationProperty .
 dct:description rdf:type owl:AnnotationProperty .
 
 
+###  http://purl.org/dc/terms/license
+dct:license rdf:type owl:AnnotationProperty .
+
+
 ###  http://purl.org/dc/terms/title
 dct:title rdf:type owl:AnnotationProperty .
 
@@ -37,11 +41,11 @@ dct:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  http://crossings.github.io/ont/martialmotion#employsArmament
+###  http://crossings.github.io/term/employsArmament
 :employsArmament rdf:type owl:ObjectProperty .
 
 
-###  http://crossings.github.io/ont/martialmotion#grips
+###  http://crossings.github.io/term/grips
 :grips rdf:type owl:ObjectProperty ;
        rdfs:subPropertyOf :employsArmament .
 
@@ -88,14 +92,9 @@ dul:isRoleOf rdf:type owl:ObjectProperty .
 #    Classes
 #################################################################
 
-###  http://crossings.github.io/ont/martialmotion#Stance
-:Stance rdf:type owl:Class ;
-        rdfs:subClassOf :BodilyState ;
-        rdfs:label "stance"@en .
-
-
 ###  http://crossings.github.io/term/Armament
 :Armament rdf:type owl:Class ;
+          owl:disjointWith :BodilyState ;
           rdfs:comment "A type of device with the potential to cause or impede harm. Types of body parts, or of stances assumed by them, may be classified as such."@en ;
           rdfs:label "armament"@en .
 
@@ -154,15 +153,6 @@ dul:isRoleOf rdf:type owl:ObjectProperty .
           rdfs:label "handling"@en .
 
 
-###  http://crossings.github.io/term/LeadHand
-:LeadHand rdf:type dul:Role ;
-dul:isRoleOf :Hand ;
-          owl:differentFrom :RearHand ;
-          rdfs:comment "The hand that is elected as lead hand may be used as a defensive tool or to create space so that an opponent cannot strike. It can be used to block the opponent’s field of vision, so that they see the other attacks coming behind it."@en ;
-          rdfs:label "lead hand"@en ;
-          rdfs:seeAlso "http://PR0CK0.github.io/umao#LeadHand"^^xsd:anyURI .
-
-
 ###  http://crossings.github.io/term/MeleeWeaponType
 :MeleeWeaponType rdf:type owl:Class ;
                  rdfs:subClassOf :WeaponType ;
@@ -177,11 +167,10 @@ dul:isRoleOf :Hand ;
          rdfs:label "posture"@en .
 
 
-###  http://crossings.github.io/term/RearHand
-:RearHand rdf:type dul:Role ;
-dul:isRoleOf :Hand ;
-          rdfs:label "rear hand"@en ;
-          rdfs:seeAlso "http://PR0CK0.github.io/umao#RearHand"^^xsd:anyURI .
+###  http://crossings.github.io/term/Stance
+:Stance rdf:type owl:Class ;
+        rdfs:subClassOf :BodilyState ;
+        rdfs:label "stance"@en .
 
 
 ###  http://crossings.github.io/term/Step
@@ -234,12 +223,30 @@ dul:Role rdf:type owl:Class .
       rdfs:label "hand"@en .
 
 
+###  http://crossings.github.io/term/LeadHand
+:LeadHand rdf:type owl:NamedIndividual ,
+                   dul:Role ;
+          owl:differentFrom :RearHand ;
+          dul:isRoleOf :Hand ;
+          rdfs:comment "The hand that is elected as lead hand may be used as a defensive tool or to create space so that an opponent cannot strike. It can be used to block the opponent’s field of vision, so that they see the other attacks coming behind it."@en ;
+          rdfs:label "lead hand"@en ;
+          rdfs:seeAlso "http://PR0CK0.github.io/umao#LeadHand"^^xsd:anyURI .
+
+
 ###  http://crossings.github.io/term/OneHandedGrip
 :OneHandedGrip rdf:type owl:NamedIndividual ,
                         :Grip ;
                owl:differentFrom :TwoHandedGrip ;
                rdfs:comment "A grip, over a weapon or an opponent, that requires the usage of one hand; whether left or right, if dependent on the weapon, can be specified on its corresponding description."@en ;
                rdfs:label "one-handed grip"@en .
+
+
+###  http://crossings.github.io/term/RearHand
+:RearHand rdf:type owl:NamedIndividual ,
+                   dul:Role ;
+          dul:isRoleOf :Hand ;
+          rdfs:label "rear hand"@en ;
+          rdfs:seeAlso "http://PR0CK0.github.io/umao#RearHand"^^xsd:anyURI .
 
 
 ###  http://crossings.github.io/term/TwoHandedGrip

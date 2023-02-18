@@ -6,22 +6,54 @@
 @prefix xml: <http://www.w3.org/XML/1998/namespace> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@base <http://crossings.github.io/term/> .
 
 <http://crossings.github.io/ont/martialstyle> rdf:type owl:Ontology ;
-    dct:license <http://creativecommons.org/licenses/by/4.0/>    ;
-    dct:title   "The Martial Arts ontology: Stylistic framework"    ;
-    rdfs:comment "This is the module where the kinetic and kinesthetic features come together into formal methods that bubble up from indivudual techniques to styles and all the way complete martial arts."@en ;
-    dct:creator   <https://orcid.org/0000-0002-9272-908X>
-.
+                                               dct:creator <https://orcid.org/0000-0002-9272-908X> ;
+                                               dct:license <http://creativecommons.org/licenses/by/4.0/> ;
+                                               dct:title "The Martial Arts ontology: Stylistic framework" ;
+                                               rdfs:comment "This is the module where the kinetic and kinesthetic features come together into formal methods that bubble up from indivudual techniques to styles and all the way complete martial arts."@en .
+
+#################################################################
+#    Annotation properties
+#################################################################
+
+###  http://purl.org/dc/terms/creator
+dct:creator rdf:type owl:AnnotationProperty .
 
 
-###  http://semanticweb.org/ont/martialmotion#belongsInSystem
+###  http://purl.org/dc/terms/description
+dct:description rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/license
+dct:license rdf:type owl:AnnotationProperty .
+
+
+###  http://purl.org/dc/terms/title
+dct:title rdf:type owl:AnnotationProperty .
+
+
+#################################################################
+#    Object Properties
+#################################################################
+
+###  http://crossings.github.io/term/belongsInSystem
 :belongsInSystem rdf:type owl:ObjectProperty ;
                  rdfs:domain :Technique ;
                  rdfs:range :StylingSystem ;
                  rdfs:label "belongs in system" .
-                 
-###  http://semanticweb.org/ont/martialmotion#isFeatureOf
+
+
+###  http://crossings.github.io/term/employsArmament
+:employsArmament rdf:type owl:ObjectProperty ;
+                 rdfs:domain dul:Method ;
+                 rdfs:range :Armament ;
+                 rdfs:comment "Used to denote that a formal/methodological martial framework (e.g. a technique or entire style) foresees the use of a particular type of weaponry. It should not be used to denote that a particular _execution_ was carried out with that kind of weapon."@en ;
+                 rdfs:label "employs armament"@en .
+
+
+###  http://crossings.github.io/term/isFeatureOf
 :isFeatureOf rdf:type owl:ObjectProperty ;
              rdfs:range [ rdf:type owl:Class ;
                           owl:unionOf ( :StylingSystem
@@ -30,28 +62,25 @@
                         ] .
 
 
-###  http://semanticweb.org/ont/martialmotion#employsArmament
-:employsArmament rdf:type owl:ObjectProperty ;
-                rdfs:domain dul:Method ;
-                 rdfs:range :Armament ;
-                 rdfs:label "employs armament"@en;
-                 rdfs:comment "Used to denote that a formal/methodological martial framework (e.g. a technique or entire style) foresees the use of a particular type of weaponry. It should not be used to denote that a particular _execution_ was carried out with that kind of weapon."@en
-.
-
-###  http://semanticweb.org/ont/martialmotion#symbolicallyRepresents
+###  http://crossings.github.io/term/representedBy
 :representedBy rdf:type owl:ObjectProperty ;
-                        rdfs:domain [ rdf:type owl:Class ;
-                                      owl:unionOf ( :Choreography
-                                                    :StylingSystem
-                                                    :Technique
-                                                  )
-                                    ] ;
-                        rdfs:range :SymbolicObject ;
-                        rdfs:comment "the symbolic binding between a form, technique etc. and a wordly entity, e.g. the relationship between a kata and the combat it simulates, or a crane style with a crane's movements."@en ;
-                        rdfs:comment "TODO map to CIDOC CRM symbolic representations or with DOLCE"@en ;
-                        rdfs:label "represented by"@en .
-                        
-###  http://semanticweb.org/ont/martialmotion#AmbiTechnique
+               rdfs:domain [ rdf:type owl:Class ;
+                             owl:unionOf ( :Form
+                                           :StylingSystem
+                                           :Technique
+                                         )
+                           ] ;
+               rdfs:range :SymbolicObject ;
+               rdfs:comment "TODO map to CIDOC CRM symbolic representations or with DOLCE"@en ,
+                            "the symbolic binding between a form, technique etc. and a wordly entity, e.g. the relationship between a kata and the combat it simulates, or a crane style with a crane's movements."@en ;
+               rdfs:label "represented by"@en .
+
+
+#################################################################
+#    Classes
+#################################################################
+
+###  http://crossings.github.io/term/AmbiTechnique
 :AmbiTechnique rdf:type owl:Class ;
                rdfs:subClassOf :FrontalTechnique ,
                                :ReverseTechnique ;
@@ -59,21 +88,23 @@
                rdfs:comment "e.g. holding a staff in the middle and using both ends to attack."@en ;
                rdfs:label "ambivalent technique"@en .
 
-###  http://semanticweb.org/ont/martialmotion#Choreography
-:Choreography rdf:type owl:Class ;
-              rdfs:subClassOf dul:Method ;
-              rdfs:comment "Forms. Examples include Japanese kata, Chinese taolu, Korean hyung, and Southeast Asian jurus (preset) and tari (freeform)"@en ,
-                           "TODO: make a separate class for Form?"@en .
+
+###  http://crossings.github.io/term/Armament
+:Armament rdf:type owl:Class .
 
 
-###  http://semanticweb.org/ont/martialmotion#DynamicTrainingMethod
+###  http://crossings.github.io/term/BodyPartType
+:BodyPartType rdf:type owl:Class .
+
+
+###  http://crossings.github.io/term/DynamicTrainingMethod
 :DynamicTrainingMethod rdf:type owl:Class ;
                        rdfs:subClassOf :TrainingMethod ;
                        owl:disjointWith :StaticTrainingMethod ;
                        rdfs:label "dynamic training method" .
 
 
-###  http://semanticweb.org/ont/martialmotion#EmptyHandTechnique
+###  http://crossings.github.io/term/EmptyHandTechnique
 :EmptyHandTechnique rdf:type owl:Class ;
                     rdfs:subClassOf :Technique ,
                                     [ rdf:type owl:Restriction ;
@@ -83,70 +114,84 @@
                     owl:disjointWith :WeaponTechnique .
 
 
-###  http://semanticweb.org/ont/martialmotion#FrontalTechnique
+###  http://crossings.github.io/term/Form
+:Form rdf:type owl:Class ;
+      rdfs:subClassOf dul:Method ;
+      rdfs:comment "Forms. Examples include Japanese kata, Chinese taolu, Korean hyung, and Southeast Asian jurus (preset) and tari (freeform)"@en ,
+                   "TODO: make a separate class for Form?"@en .
+
+
+###  http://crossings.github.io/term/FrontalTechnique
 :FrontalTechnique rdf:type owl:Class ;
                   rdfs:subClassOf :Technique ;
                   rdfs:label "frontal technique" .
-                  
-###  http://semanticweb.org/ont/martialmotion#HardApproach
+
+
+###  http://crossings.github.io/term/HardApproach
 :HardApproach rdf:type owl:Class ;
               rdfs:subClassOf :IntentiveApproach ;
+              owl:disjointWith :SoftApproach ;
               rdfs:comment "An intent that requires hardening of the body prior to the execution of a technique."@en .
 
 
-###  http://semanticweb.org/ont/martialmotion#IntentiveApproach
+###  http://crossings.github.io/term/IntentiveApproach
 :IntentiveApproach rdf:type owl:Class ;
                    rdfs:comment "an approach with an intent (e.g. to attack, distract or defend)"@en ;
                    rdfs:label "intentive approach"@en .
 
-###  http://semanticweb.org/ont/martialmotion#ReverseTechnique
+
+###  http://crossings.github.io/term/ReverseTechnique
 :ReverseTechnique rdf:type owl:Class ;
                   rdfs:subClassOf :Technique ;
                   rdfs:label "reverse technique" .
 
 
-###  http://semanticweb.org/ont/martialmotion#SoftApproach
+###  http://crossings.github.io/term/SoftApproach
 :SoftApproach rdf:type owl:Class ;
               rdfs:subClassOf :IntentiveApproach ;
               rdfs:comment "An intent that requires loosening of the body prior to the execution of a technique."@en .
 
 
-###  http://semanticweb.org/ont/martialmotion#StaticTrainingMethod
+###  http://crossings.github.io/term/StaticTrainingMethod
 :StaticTrainingMethod rdf:type owl:Class ;
                       rdfs:subClassOf :TrainingMethod ;
                       rdfs:label "static training method" .
 
-###  http://semanticweb.org/ont/martialmotion#StylingSystem
+
+###  http://crossings.github.io/term/StylingSystem
 :StylingSystem rdf:type owl:Class ;
                rdfs:subClassOf dul:Method ;
                rdfs:comment "Combination of techniques under a common aegis (e.g. Wado-ryu karate, Hakka staff-fighting system)."@en ;
                rdfs:label "styling system"@en .
 
-:SymbolicObject a owl:Class ;
-               rdfs:comment "Anything that is used as an allegory for a technique or style (e.g. the crane, the monkey or the drunken man). Note that, much like topics, things will rarely be materially typed with this class, so it should primarily be used in inference rules. Also note that many symbolic objects may denote classes, which may be used here as individuals by reason of punning."@en ;
-               rdfs:label "symbolic object"@en
-.
 
-###  http://semanticweb.org/ont/martialmotion#Technique
+###  http://crossings.github.io/term/SymbolicObject
+:SymbolicObject rdf:type owl:Class ;
+                rdfs:comment "Anything that is used as an allegory for a technique or style (e.g. the crane, the monkey or the drunken man). Note that, much like topics, things will rarely be materially typed with this class, so it should primarily be used in inference rules. Also note that many symbolic objects may denote classes, which may be used here as individuals by reason of punning."@en ;
+                rdfs:label "symbolic object"@en .
+
+
+###  http://crossings.github.io/term/Technique
 :Technique rdf:type owl:Class ;
            rdfs:subClassOf dul:Method ;
            rdfs:comment "What can atomically be considered a technique (e.g. stance, hand form) or combination thereof."@en ;
            rdfs:label "martial technique"@en .
 
 
-###  http://semanticweb.org/ont/martialmotion#TrainingMethod
+###  http://crossings.github.io/term/TrainingMethod
 :TrainingMethod rdf:type owl:Class ;
                 rdfs:subClassOf dul:Method ;
                 rdfs:comment "a way of matering a styling system, or a technique therein"@en ;
                 rdfs:label "training method" .
 
 
-###  http://semanticweb.org/ont/martialmotion#TrainingSet
+###  http://crossings.github.io/term/TrainingSet
 :TrainingSet rdf:type owl:Class ;
              rdfs:comment "A training method (in a technique or for a whole style) may be comprised of separate training sets, e.g. one solo and one for sparring in two or more."@en ;
              rdfs:label "training set" .
-             
-###  http://semanticweb.org/ont/martialmotion#WeaponTechnique
+
+
+###  http://crossings.github.io/term/WeaponTechnique
 :WeaponTechnique rdf:type owl:Class ;
                  rdfs:subClassOf :Technique ,
                                  [ rdf:type owl:Restriction ;
@@ -154,13 +199,34 @@
                                    owl:someValuesFrom :WeaponType
                                  ] .
 
+
+###  http://crossings.github.io/term/WeaponType
+:WeaponType rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Method
+dul:Method rdf:type owl:Class .
+
+
 #################################################################
 #    General axioms
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Choreography
+  owl:members ( :Form
                 :StylingSystem
                 :Technique
+                :TrainingMethod
               )
 ] .
+
+
+[ rdf:type owl:AllDisjointClasses ;
+  owl:members ( :IntentiveApproach
+                :SymbolicObject
+                :TrainingSet
+              )
+] .
+
+
+###  Generated by the OWL API (version 4.5.24.2023-01-14T21:28:32Z) https://github.com/owlcs/owlapi
