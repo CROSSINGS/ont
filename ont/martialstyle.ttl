@@ -38,6 +38,14 @@ dct:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  http://crossings.github.io/ont/martialstyle#transmits
+:transmits rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasStylisticFeature ;
+           rdfs:domain :Technique ;
+           rdfs:range :VitalFlow ;
+           rdfs:label "transmits"@en .
+
+
 ###  http://crossings.github.io/term/affectsBodyPart
 :affectsBodyPart rdf:type owl:ObjectProperty ;
                  rdfs:domain :Development ;

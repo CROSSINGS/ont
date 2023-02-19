@@ -2,3 +2,5 @@
 .DS_Store
 
 catalog-v*.xml
+
+*.bkp
