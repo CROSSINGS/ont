@@ -38,13 +38,6 @@ dct:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  http://crossings.github.io/ont/martialstyle#develops
-:develops rdf:type owl:ObjectProperty ;
-          rdfs:domain :TrainingMethod ;
-          rdfs:range :Development ;
-          rdfs:label "develops" .
-
-
 ###  http://crossings.github.io/term/affectsBodyPart
 :affectsBodyPart rdf:type owl:ObjectProperty ;
                  rdfs:domain :Development ;
@@ -57,6 +50,13 @@ dct:title rdf:type owl:AnnotationProperty .
                  rdfs:domain :Technique ;
                  rdfs:range :StylingSystem ;
                  rdfs:label "belongs in system" .
+
+
+###  http://crossings.github.io/term/develops
+:develops rdf:type owl:ObjectProperty ;
+          rdfs:domain :TrainingMethod ;
+          rdfs:range :Development ;
+          rdfs:label "develops" .
 
 
 ###  http://crossings.github.io/term/employsArmament
@@ -260,18 +260,19 @@ dul:Quality rdf:type owl:Class .
 #################################################################
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :Form
-                :StylingSystem
-                :Technique
-                :TrainingMethod
+  owl:members ( :Development
+                :IntentiveApproach
+                :SymbolicObject
+                :TrainingSet
               )
 ] .
 
 
 [ rdf:type owl:AllDisjointClasses ;
-  owl:members ( :IntentiveApproach
-                :SymbolicObject
-                :TrainingSet
+  owl:members ( :Form
+                :StylingSystem
+                :Technique
+                :TrainingMethod
               )
 ] .
 
