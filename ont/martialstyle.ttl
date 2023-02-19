@@ -38,6 +38,20 @@ dct:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
+###  http://crossings.github.io/ont/martialstyle#develops
+:develops rdf:type owl:ObjectProperty ;
+          rdfs:domain :TrainingMethod ;
+          rdfs:range :Development ;
+          rdfs:label "develops" .
+
+
+###  http://crossings.github.io/term/affectsBodyPart
+:affectsBodyPart rdf:type owl:ObjectProperty ;
+                 rdfs:domain :Development ;
+                 rdfs:range :BodyPartType ;
+                 rdfs:label "affects body part"@en .
+
+
 ###  http://crossings.github.io/term/belongsInSystem
 :belongsInSystem rdf:type owl:ObjectProperty ;
                  rdfs:domain :Technique ;
@@ -63,6 +77,13 @@ dct:title rdf:type owl:AnnotationProperty .
                      owl:inverseOf :isStylisticFeatureOf ;
                      rdfs:domain dul:Method ;
                      rdfs:label "has stylistic feature"@en .
+
+
+###  http://crossings.github.io/term/improves
+:improves rdf:type owl:ObjectProperty ;
+          rdfs:domain :Development ;
+          rdfs:range dul:Quality ;
+          rdfs:label "improves"@en .
 
 
 ###  http://crossings.github.io/term/isStylisticFeatureOf
@@ -111,6 +132,11 @@ dct:title rdf:type owl:AnnotationProperty .
 
 ###  http://crossings.github.io/term/BodyPartType
 :BodyPartType rdf:type owl:Class .
+
+
+###  http://crossings.github.io/term/Development
+:Development rdf:type owl:Class ;
+             rdfs:label "development"@en .
 
 
 ###  http://crossings.github.io/term/DynamicTrainingMethod
@@ -223,6 +249,10 @@ dct:title rdf:type owl:AnnotationProperty .
 
 ###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Method
 dul:Method rdf:type owl:Class .
+
+
+###  http://www.ontologydesignpatterns.org/ont/dul/DUL.owl#Quality
+dul:Quality rdf:type owl:Class .
 
 
 #################################################################
