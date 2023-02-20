@@ -38,14 +38,6 @@ dct:title rdf:type owl:AnnotationProperty .
 #    Object Properties
 #################################################################
 
-###  http://crossings.github.io/ont/martialstyle#transmits
-:transmits rdf:type owl:ObjectProperty ;
-           rdfs:subPropertyOf :hasStylisticFeature ;
-           rdfs:domain :Technique ;
-           rdfs:range :VitalFlow ;
-           rdfs:label "transmits"@en .
-
-
 ###  http://crossings.github.io/term/affectsBodyPart
 :affectsBodyPart rdf:type owl:ObjectProperty ;
                  rdfs:domain :Development ;
@@ -55,7 +47,11 @@ dct:title rdf:type owl:AnnotationProperty .
 
 ###  http://crossings.github.io/term/belongsInSystem
 :belongsInSystem rdf:type owl:ObjectProperty ;
-                 rdfs:domain :Technique ;
+                 rdfs:domain [ rdf:type owl:Class ;
+                               owl:unionOf ( :Form
+                                             :Technique
+                                           )
+                             ] ;
                  rdfs:range :StylingSystem ;
                  rdfs:label "belongs in system" .
 
@@ -119,6 +115,14 @@ dct:title rdf:type owl:AnnotationProperty .
 :symbolicallyRepresents rdf:type owl:ObjectProperty ;
                         rdfs:subPropertyOf :hasStylisticFeature ;
                         rdfs:label "symbolically represents"@en .
+
+
+###  http://crossings.github.io/term/transmits
+:transmits rdf:type owl:ObjectProperty ;
+           rdfs:subPropertyOf :hasStylisticFeature ;
+           rdfs:domain :Technique ;
+           rdfs:range :VitalFlow ;
+           rdfs:label "transmits"@en .
 
 
 #################################################################
@@ -240,6 +244,10 @@ dct:title rdf:type owl:AnnotationProperty .
 :TrainingSet rdf:type owl:Class ;
              rdfs:comment "A training method (in a technique or for a whole style) may be comprised of separate training sets, e.g. one solo and one for sparring in two or more."@en ;
              rdfs:label "training set"@en .
+
+
+###  http://crossings.github.io/term/VitalFlow
+:VitalFlow rdf:type owl:Class .
 
 
 ###  http://crossings.github.io/term/WeaponTechnique
